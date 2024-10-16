@@ -1,0 +1,28 @@
+.root {
+  // background: red;
+}
+
+header {
+  padding: 40px 0;
+
+  .pages {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.product-list {
+  background-color: red;
+}
+
+.auth-page {
+  .container {
+  }
+}
