@@ -18,8 +18,33 @@ header {
   }
 }
 
-.product-list {
-  background-color: red;
+.product-list-page {
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    .product-card {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      max-width: 200px;
+      cursor: pointer;
+
+      .header {
+      }
+
+      .info {
+        padding: 20px;
+        width: 100%;
+
+        .name {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 .auth-page {

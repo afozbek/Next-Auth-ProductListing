@@ -1,14 +1,9 @@
-import { useSession } from "next-auth/react";
 import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 const Auth = () => {
-  const { data: session } = useSession();
-
   const [username, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  console.log({ session });
 
   return (
     <div className="auth-page">
