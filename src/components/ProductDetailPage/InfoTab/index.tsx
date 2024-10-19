@@ -1,6 +1,7 @@
 import { Product } from "@/db";
 import { getFormattedDateMM_DD_YYYY } from "@/utils";
 import React from "react";
+import GeneralRating from "../GeneralRating";
 
 interface Props {
   product: Product;
@@ -13,9 +14,9 @@ const InfoTab = (props: Props) => {
   return (
     <div className="info">
       <h2 className="name">{product.productName}</h2>
-      <div className="rating" onClick={handleOpenCommentTab}>
-        {product.rating} ({product.totalNumberOfComments} reviews)
-      </div>
+
+      <GeneralRating rating={product.rating} />
+
       <span className="price">
         {product.price}
         {product.currencySymbol}

@@ -6,8 +6,15 @@ export interface Product {
   id: string;
   productArrivalDate: string;
   totalNumberOfComments: number;
-  comments: string[];
+  comments: Comment[];
   currencySymbol: string;
+}
+
+export interface Comment {
+  id: string;
+  rating: number;
+  username: string;
+  commentMessage: string;
 }
 
 export const productList: Product[] = [
@@ -22,8 +29,18 @@ export const productList: Product[] = [
     productArrivalDate: "2024-10-01",
     totalNumberOfComments: 128,
     comments: [
-      "Müziğin kalitesi beklediğimden çok daha iyi!",
-      "Şarjı uzun süre dayanıyor, çok memnunum.",
+      {
+        id: "c001",
+        rating: 5,
+        username: "user123",
+        commentMessage: "Müziğin kalitesi beklediğimden çok daha iyi!",
+      },
+      {
+        id: "c002",
+        rating: 4,
+        username: "user456",
+        commentMessage: "Şarjı uzun süre dayanıyor, çok memnunum.",
+      },
     ],
   },
   {
@@ -37,8 +54,18 @@ export const productList: Product[] = [
     productArrivalDate: "2024-09-15",
     totalNumberOfComments: 56,
     comments: [
-      "Tüm özellikleri çok iyi çalışıyor.",
-      "Bilekte çok şık duruyor.",
+      {
+        id: "c003",
+        rating: 4,
+        username: "techFan",
+        commentMessage: "Tüm özellikleri çok iyi çalışıyor.",
+      },
+      {
+        id: "c004",
+        rating: 5,
+        username: "styleGuru",
+        commentMessage: "Bilekte çok şık duruyor.",
+      },
     ],
   },
   {
@@ -52,8 +79,18 @@ export const productList: Product[] = [
     productArrivalDate: "2024-08-22",
     totalNumberOfComments: 342,
     comments: [
-      "Performansı harika, kesinlikle tavsiye ederim!",
-      "Grafik kartı oyunlarda mükemmel iş çıkarıyor.",
+      {
+        id: "c005",
+        rating: 5,
+        username: "gamerX",
+        commentMessage: "Performansı harika, kesinlikle tavsiye ederim!",
+      },
+      {
+        id: "c006",
+        rating: 5,
+        username: "graphicsPro",
+        commentMessage: "Grafik kartı oyunlarda mükemmel iş çıkarıyor.",
+      },
     ],
   },
   {
@@ -67,8 +104,18 @@ export const productList: Product[] = [
     productArrivalDate: "2024-07-10",
     totalNumberOfComments: 78,
     comments: [
-      "Kulaklığın ses kalitesi iyi ama mikrofon biraz zayıf.",
-      "Konforlu, uzun süre kullanılabiliyor.",
+      {
+        id: "c007",
+        rating: 4,
+        username: "audioLover",
+        commentMessage: "Kulaklığın ses kalitesi iyi ama mikrofon biraz zayıf.",
+      },
+      {
+        id: "c008",
+        rating: 4,
+        username: "comfortGeek",
+        commentMessage: "Konforlu, uzun süre kullanılabiliyor.",
+      },
     ],
   },
   {
@@ -82,8 +129,18 @@ export const productList: Product[] = [
     productArrivalDate: "2024-09-05",
     totalNumberOfComments: 205,
     comments: [
-      "Ekran kalitesi çok iyi, film izlemek için mükemmel.",
-      "Batarya ömrü beklediğimden daha uzun.",
+      {
+        id: "c009",
+        rating: 5,
+        username: "movieBuff",
+        commentMessage: "Ekran kalitesi çok iyi, film izlemek için mükemmel.",
+      },
+      {
+        id: "c010",
+        rating: 4,
+        username: "batteryMaster",
+        commentMessage: "Batarya ömrü beklediğimden daha uzun.",
+      },
     ],
   },
 ];

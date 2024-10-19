@@ -71,6 +71,23 @@ header {
       }
     }
 
+    .general-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      margin-bottom: 20px;
+
+      .info-message,
+      .count {
+        color: #999;
+        line-height: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+    }
+
     .info {
       display: flex;
       flex-direction: column;
@@ -98,6 +115,33 @@ header {
     }
 
     .comments {
+      .add-new-comment {
+        // border: 1px solid #ccc;
+        margin-bottom: 40px;
+
+        .floatingTextarea {
+          font-size: 16px;
+        }
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 10px;
+
+        .comment {
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          padding: 10px;
+
+          .user {
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 5px;
+          }
+        }
+      }
     }
   }
 }
