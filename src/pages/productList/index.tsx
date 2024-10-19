@@ -1,28 +1,23 @@
 import ProductCard from "@/components/ProductCard";
-import { productList } from "@/db";
+import { useProductList } from "@/context/useProductList";
+import { Product } from "@/types";
 
-type Props = {
-  products: typeof productList;
-};
+// interface Props {
+//   products: Product[];
+// }
 
-const ProductListPage = (props: Props) => {
+const ProductListPage = () => {
+  const { productList } = useProductList();
+
   return (
     <div className="product-list-page">
       <div className="container">
-        {props.products.map((product) => {
+        {productList.map((product: Product) => {
           return <ProductCard product={product} key={product.id} />;
         })}
       </div>
     </div>
   );
-};
-
-export const getServerSideProps = async () => {
-  return {
-    props: {
-      products: productList,
-    },
-  };
 };
 
 export default ProductListPage;

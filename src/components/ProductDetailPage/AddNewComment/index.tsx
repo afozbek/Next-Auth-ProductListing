@@ -1,4 +1,5 @@
-import { Comment } from "@/db";
+import { useProductList } from "@/context/useProductList";
+import { Comment } from "@/types";
 import { Rating } from "@mui/material";
 import React from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
@@ -10,17 +11,41 @@ interface Props {
 const AddNewComment = (props: Props) => {
   const [rating, setRating] = React.useState<number | null>(null);
   const [comment, setComment] = React.useState("");
+  const { productList, handleChangeProductList } = useProductList();
+
+  const { productId } = props;
 
   const handleCommentToProduct = () => {
-    // todo: validation here
+    // more validation can be added
+    if (!rating || !comment) {
+      return;
+    }
 
-    // current user
     const newComment: Comment = {
       commentMessage: comment,
       rating: rating ?? 0,
       id: Math.random().toString(),
-      username: "Anonymous",
+      username: "Anonymous", // change username
     };
+
+    // find the product
+    const newUpdatedProductList = productList.map((product) => {
+      // update the product
+      if (product.id === productId) {
+        return {
+          ...product,
+          comments: [...product.comments, newComment],
+        };
+      }
+
+      return product;
+    });
+
+    // update the product list
+    handleChangeProductList(newUpdatedProductList);
+
+    setComment("");
+    setRating(null);
   };
 
   return (
@@ -31,7 +56,6 @@ const AddNewComment = (props: Props) => {
         onChange={(event, newValue) => {
           setRating(newValue);
         }}
-        precision={0.5}
         size="medium"
       />
 
@@ -50,7 +74,7 @@ const AddNewComment = (props: Props) => {
         />
       </FloatingLabel>
 
-      <Button variant="primary" onClick={handleCommentToProduct}>
+      <Button type="submit" variant="primary" onClick={handleCommentToProduct}>
         Yorum Yap
       </Button>
     </div>

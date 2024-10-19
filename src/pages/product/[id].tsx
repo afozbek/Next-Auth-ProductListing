@@ -3,25 +3,31 @@ import InfoTab from "@/components/ProductDetailPage/InfoTab";
 import ProductDetailTabs, {
   TabType,
 } from "@/components/ProductDetailPage/ProductDetailTabs";
-import { Product, productList } from "@/db";
-import { NextPageContext } from "next";
+import { useProductList } from "@/context/useProductList";
+import { routeUrls } from "@/utils/constants";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useMemo } from "react";
 
-type Props = {
-  product: Product;
-};
-
-const ProductDetailPage = (props: Props) => {
-  const { product } = props;
+const ProductDetailPage = () => {
+  const { productList } = useProductList();
+  const router = useRouter();
 
   const [activeTab, setActiveTab] = React.useState<TabType>(TabType.info);
-
-  console.log(product);
 
   const handleOpenCommentTab = () => {
     setActiveTab(TabType.comments);
   };
+
+  // since there is no API to update and fetch these product items, I do it inside useEffect
+  // otherwise I wanted to use getServersideProps to fetch these on the server side
+  const product = useMemo(() => {
+    return productList.find((product) => product.id === router.query.id);
+  }, [productList]);
+
+  if (!product) {
+    return;
+  }
 
   return (
     <div className="product-detail-page">
@@ -53,14 +59,6 @@ const ProductDetailPage = (props: Props) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps = async (context: NextPageContext) => {
-  return {
-    props: {
-      product: productList.find((product) => product.id === context.query.id),
-    },
-  };
 };
 
 export default ProductDetailPage;

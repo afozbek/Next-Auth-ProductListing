@@ -1,23 +1,6 @@
-export interface Product {
-  productName: string;
-  price: number;
-  rating: number;
-  productImageUrl: string;
-  id: string;
-  productArrivalDate: string;
-  totalNumberOfComments: number;
-  comments: Comment[];
-  currencySymbol: string;
-}
+import { Product } from "@/types";
 
-export interface Comment {
-  id: string;
-  rating: number;
-  username: string;
-  commentMessage: string;
-}
-
-export const productList: Product[] = [
+export const defaultProductList: Product[] = [
   {
     productName: "Bluetooth Hoparlör",
     price: 49.99,

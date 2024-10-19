@@ -1,7 +1,7 @@
-import { Comment, Product } from "@/db";
 import { Rating } from "@mui/material";
 import GeneralRating from "../GeneralRating";
 import AddNewComment from "../AddNewComment";
+import { Comment, Product } from "@/types";
 
 interface Props {
   product: Product;
