@@ -3,6 +3,10 @@ import React from "react";
 
 interface Props {
   rating: number;
+  totalNumberOfComments?: number;
+  size?: "small" | "medium" | "large";
+  infoShown?: boolean;
+  isTotalCommentCountShown?: boolean;
 }
 
 const GeneralRating = (props: Props) => {
@@ -13,10 +17,14 @@ const GeneralRating = (props: Props) => {
         value={props.rating}
         readOnly
         precision={0.5}
-        size="medium"
+        size={props.size ?? "medium"}
       />
       <div className="count">{props.rating}</div>
-      <p className="info-message">(Ortalama Puan)</p>
+      {props.isTotalCommentCountShown && (
+        <div className="totalCommentCount">({props.totalNumberOfComments})</div>
+      )}
+
+      {props.infoShown && <p className="info-message">(Ortalama Puan)</p>}
     </div>
   );
 };

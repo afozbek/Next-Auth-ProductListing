@@ -31,6 +31,8 @@ header {
       border-radius: 3px;
       max-width: 200px;
       cursor: pointer;
+      text-decoration: none;
+      color: #666666;
 
       .header {
       }
@@ -42,6 +44,11 @@ header {
         .name {
           width: 100%;
         }
+      }
+
+      .price {
+        font-size: 18px;
+        font-family: sans-serif;
       }
     }
   }
@@ -68,23 +75,6 @@ header {
         &.active {
           text-decoration: underline;
         }
-      }
-    }
-
-    .general-rating {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-
-      margin-bottom: 20px;
-
-      .info-message,
-      .count {
-        color: #999;
-        line-height: 10px;
-        font-size: 12px;
-        font-weight: 600;
-        margin-bottom: 0;
       }
     }
 
@@ -129,6 +119,8 @@ header {
         flex-direction: column;
         justify-content: flex-start;
         gap: 10px;
+        max-height: 500px;
+        overflow-y: scroll;
 
         .comment {
           border: 1px solid #ccc;
@@ -143,6 +135,24 @@ header {
         }
       }
     }
+  }
+}
+
+.general-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-bottom: 20px;
+
+  .info-message,
+  .totalCommentCount,
+  .count {
+    color: #999;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
   }
 }
 

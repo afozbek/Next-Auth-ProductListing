@@ -1,8 +1,10 @@
-import { Product } from "@/db";
 import { routeUrls } from "@/utils/constants";
+import { Rating } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import GeneralRating from "../ProductDetailPage/GeneralRating";
+import { Product } from "@/types";
 
 type Props = {
   product: Product;
@@ -23,9 +25,16 @@ const ProductCard = (props: Props) => {
         <div className="info">
           <div className="name">{product.productName}</div>
           <div className="rating">
-            {product.rating} ({product.totalNumberOfComments})
+            <GeneralRating
+              rating={product.rating}
+              size="small"
+              totalNumberOfComments={product.comments.length}
+              isTotalCommentCountShown
+            />
           </div>
-          <span className="price">{product.price}</span>
+          <span className="price">
+            {product.price} {product.currencySymbol}
+          </span>
           <span className="rating"></span>
         </div>
       </div>

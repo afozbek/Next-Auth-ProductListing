@@ -16,19 +16,14 @@ const CommentTab = (props: Props) => {
         Total Reviews ({product.totalNumberOfComments})
       </h2>
 
-      <AddNewComment productId={product.id} />
+      <AddNewComment product={product} />
 
-      <GeneralRating rating={product.rating} />
+      <GeneralRating rating={product.rating} infoShown />
 
       <div className="list">
         {product.comments.map((comment: Comment) => (
           <div key={comment.id} className="comment">
-            <Rating
-              name={comment.id}
-              value={comment.rating}
-              readOnly
-              size="small"
-            />
+            <GeneralRating rating={comment.rating} size="small" />
             <div className="comment-text">{comment.commentMessage}</div>
             <div className="user">{comment.username}</div>
           </div>

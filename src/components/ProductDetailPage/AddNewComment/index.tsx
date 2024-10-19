@@ -1,11 +1,11 @@
 import { useProductList } from "@/context/useProductList";
-import { Comment } from "@/types";
+import { Comment, Product } from "@/types";
 import { Rating } from "@mui/material";
 import React from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 interface Props {
-  productId: string;
+  product: Product;
 }
 
 const AddNewComment = (props: Props) => {
@@ -13,7 +13,13 @@ const AddNewComment = (props: Props) => {
   const [comment, setComment] = React.useState("");
   const { productList, handleChangeProductList } = useProductList();
 
-  const { productId } = props;
+  const { product } = props;
+
+  const calculateAverageRating = (productList: Product[]) => {
+    if (rating === null) {
+      return;
+    }
+  };
 
   const handleCommentToProduct = () => {
     // more validation can be added
@@ -28,17 +34,29 @@ const AddNewComment = (props: Props) => {
       username: "Anonymous", // change username
     };
 
-    // find the product
-    const newUpdatedProductList = productList.map((product) => {
+    const totalProductRating = product.comments.reduce((acc, comment) => {
+      return acc + comment.rating;
+    }, 0);
+
+    const updatedRating = totalProductRating + rating;
+
+    const newAvgRating = Number(
+      updatedRating / (product.comments.length + 1)
+    ).toFixed(1);
+
+    // normally we get these updated data from the server
+    const newUpdatedProductList = productList.map((p) => {
       // update the product
-      if (product.id === productId) {
+      if (p.id === product.id) {
         return {
-          ...product,
-          comments: [...product.comments, newComment],
+          ...p,
+          comments: [...p.comments, newComment],
+          rating: parseFloat(newAvgRating),
+          totalNumberOfComments: p.totalNumberOfComments + 1,
         };
       }
 
-      return product;
+      return p;
     });
 
     // update the product list
@@ -53,7 +71,7 @@ const AddNewComment = (props: Props) => {
       <Rating
         name="simple-controlled"
         value={rating}
-        onChange={(event, newValue) => {
+        onChange={(_, newValue) => {
           setRating(newValue);
         }}
         size="medium"
