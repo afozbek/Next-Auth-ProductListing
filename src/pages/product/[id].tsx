@@ -72,7 +72,7 @@ const ProductDetailPage = () => {
       <div className="container">
         <div className="image-slider">
           <div className="slides">
-            {product.productSliderList.map((slideUrl, index) => {
+            {product.productSliderList.map((slideUrl) => {
               return (
                 <Image
                   className="slide-img"
