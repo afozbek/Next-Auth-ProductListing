@@ -1,16 +1,19 @@
 import { routeUrls } from "@/utils/constants";
+import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-const Header = () => {
-  const isUserLoggedIn = false;
+interface HeaderProps {
+  userSession: Session | null;
+}
+
+const Header = ({ userSession }: HeaderProps) => {
+  const isUserLoggedIn = userSession && userSession.user;
   const router = useRouter();
 
-  const user = {
-    name: "John Doe",
-  };
+  console.log({ userSession });
 
   return (
     <header>
@@ -23,7 +26,16 @@ const Header = () => {
 
         <div className="user">
           {isUserLoggedIn ? (
-            <div>Welcome {user.name}</div>
+            <div>
+              Welcome {userSession.user?.name}{" "}
+              <button
+                onClick={() => {
+                  router.push("/api/auth/signout");
+                }}
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <button
               className="login"

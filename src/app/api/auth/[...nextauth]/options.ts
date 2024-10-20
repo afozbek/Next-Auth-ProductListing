@@ -26,10 +26,16 @@ export const options: NextAuthOptions = {
         // This is where you need to retrieve user data
         // to verify with credentials
         // Docs: https://next-auth.js.org/configuration/providers/credentials
-        const user = { id: "42", username: "user", password: "user123" };
+        const user = {
+          id: "42",
+          name: "user",
+          password: "user123",
+          email: "test@test.com",
+        };
 
+        // DUMMY CHECK TO FETCH jwt token
         if (
-          credentials?.username === user.username &&
+          credentials?.username === user.name &&
           credentials?.password === user.password
         ) {
           return user;
