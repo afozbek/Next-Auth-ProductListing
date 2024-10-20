@@ -9,7 +9,7 @@ interface Props {
 }
 
 const InfoTab = (props: Props) => {
-  const { product, handleOpenCommentTab } = props;
+  const { product } = props;
 
   return (
     <div className="info">

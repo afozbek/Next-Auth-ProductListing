@@ -15,12 +15,6 @@ const AddNewComment = (props: Props) => {
 
   const { product } = props;
 
-  const calculateAverageRating = (productList: Product[]) => {
-    if (rating === null) {
-      return;
-    }
-  };
-
   const handleCommentToProduct = () => {
     // more validation can be added
     if (!rating || !comment) {

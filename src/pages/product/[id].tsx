@@ -4,10 +4,9 @@ import ProductDetailTabs, {
   TabType,
 } from "@/components/ProductDetailPage/ProductDetailTabs";
 import { useProductList } from "@/context/useProductList";
-import { routeUrls } from "@/utils/constants";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 
 const ProductDetailPage = () => {
   const { productList } = useProductList();
