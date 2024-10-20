@@ -8,6 +8,7 @@ export interface Product {
   totalNumberOfComments: number;
   comments: Comment[];
   currencySymbol: string;
+  productSliderList: string[];
 }
 
 export interface Comment {
