@@ -7,7 +7,7 @@ import { useProductList } from "@/context/useProductList";
 import { routeUrls } from "@/utils/constants";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 
 const ProductDetailPage = () => {
   const { productList } = useProductList();
@@ -21,9 +21,7 @@ const ProductDetailPage = () => {
 
   // since there is no API to update and fetch these product items, I do it inside useEffect
   // otherwise I wanted to use getServersideProps to fetch these on the server side
-  const product = useMemo(() => {
-    return productList.find((product) => product.id === router.query.id);
-  }, [productList]);
+  const product = productList.find((product) => product.id === router.query.id);
 
   if (!product) {
     return;
