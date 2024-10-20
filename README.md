@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### Welcome to the Auth Next project
 
-## Getting Started
+Here are the few things you need to do to run it on your local machine
 
-First, run the development server:
+1. run `npm i` to install dependencies
+2. create a `.env.local` file which will be store in your machine and will not sent to github
+3. add `NEXTAUTH_SECRET`, `GITHUB_SECRET` & `GITHUB_ID` to this file which can be obtain following this
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   1. NEXTAUTH_SECRET can be obtain following [this document](https://next-auth.js.org/configuration/options)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   You will need to run this command and pass it to env variable
+   `openssl rand -base64 32`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   2. GITHUB_SECRET & GITHUB_ID can both be obtained from githun Oauth app setup. For this create new Oauth app and copy the secret and id seperately. Create it from [here](https://github.com/settings/developers)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. once everything is set up run development server with `npm run dev`
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Since there is no BE at the moment, you can use dummy user credentials which can be found at src/app/options.ts file. You can add your login logic here in the future.
+6. We already have some middleware to protect routes which was provided by Next Auth. You can check the docs [from here](https://next-auth.js.org/getting-started/introduction)
