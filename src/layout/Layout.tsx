@@ -8,21 +8,12 @@ import Header from "./Header";
 import { useProductList } from "@/context/useProductList";
 import { defaultProductList } from "@/db";
 import { useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const Layout = (props: Props) => {
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect("/api/auth/signin?callbackUrl=/client");
-    },
-  });
-
   const { handleChangeProductList } = useProductList();
 
   // initial fetch data (normally it should be done in getServerSideProps)
@@ -42,7 +33,7 @@ const Layout = (props: Props) => {
 
   return (
     <div>
-      <Header userSession={session} />
+      <Header />
       {props.children}
     </div>
   );

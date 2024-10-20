@@ -1,18 +1,20 @@
 import { routeUrls } from "@/utils/constants";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
 import React from "react";
 
-interface HeaderProps {
-  userSession: Session | null;
-}
+const Header = () => {
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/api/auth/signin?callbackUrl=/client");
+    },
+  });
 
-const Header = ({ userSession }: HeaderProps) => {
-  const isUserLoggedIn = userSession && userSession.user;
+  const isUserLoggedIn = session && session.user;
   const router = useRouter();
-
-  console.log({ userSession });
 
   return (
     <header>
@@ -26,7 +28,7 @@ const Header = ({ userSession }: HeaderProps) => {
         <div className="user">
           {isUserLoggedIn ? (
             <div>
-              Welcome {userSession.user?.name}{" "}
+              Welcome {session.user?.name}{" "}
               <button
                 onClick={() => {
                   router.push("/api/auth/signout");

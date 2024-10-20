@@ -1,6 +1,7 @@
 import { useProductList } from "@/context/useProductList";
 import { Comment, Product } from "@/types";
 import { Rating } from "@mui/material";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const AddNewComment = (props: Props) => {
+  const { data: session } = useSession();
+
   const [rating, setRating] = React.useState<number | null>(null);
   const [comment, setComment] = React.useState("");
   const { productList, handleChangeProductList } = useProductList();
@@ -17,7 +20,13 @@ const AddNewComment = (props: Props) => {
 
   const handleCommentToProduct = () => {
     // more validation can be added
-    if (!rating || !comment) {
+    if (
+      !rating ||
+      !comment ||
+      !session ||
+      !session.user ||
+      !session.user.name
+    ) {
       return;
     }
 
@@ -25,7 +34,7 @@ const AddNewComment = (props: Props) => {
       commentMessage: comment,
       rating: rating ?? 0,
       id: Math.random().toString(),
-      username: "Anonymous", // change username
+      username: session.user.name, // change username
     };
 
     const totalProductRating = product.comments.reduce((acc, comment) => {
